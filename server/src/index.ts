@@ -1,12 +1,15 @@
-import express from 'express';
+import app from './config/app.js'
+import {env} from './config/env.js'
+import { connectDB } from './config/database.js'
 
-const app = express();
-const port = process.env.PORT || 3000;
 
-app.get('/', (_req, res) => {
-  res.send('Server is running');
-});
+const startServer = async () =>{
+    await connectDB();
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+
+    app.listen(env.PORT,()=>{
+        console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
+    });
+;} 
+
+startServer();
