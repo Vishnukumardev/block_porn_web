@@ -6,9 +6,15 @@ dotenv.config();
 const envSchema = z.object({
     PORT:z.coerce.number().default(3000),
     NODE_ENV:z.enum(['dev','prod','stag','test']).default('dev'),
-    DATABASE_URL: z.url({ error: 'DATABASE_URL must be a valid connection string' }),
+    DB_HOST: z.string().default('localhost'),
+    DB_PORT: z.coerce.number(),
+    DB_USER: z.string(),
+    DB_PASSWORD: z.string(),
+    DB_NAME: z.string(),
 
-});
+}).transform((data)=>({
+    ...data,DATABASE_URL: `postgresql://${data.DB_USER}:${data.DB_PASSWORD}@${data.DB_HOST}:${data.DB_PORT}/${data.DB_NAME}`,
+}));
 
 const parsedEnv = envSchema.safeParse(process.env);
 

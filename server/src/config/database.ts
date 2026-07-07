@@ -7,6 +7,8 @@ export const pool = new Pool({
 });
 
 export const connectDB = async(): Promise<void> =>{
+
+  
     try{
         const client = await pool.connect();
         console.log(`Database Connected successfully`);
