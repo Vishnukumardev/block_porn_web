@@ -18,3 +18,7 @@ tmp/
 temp/
 *.local
 *.pid
+
+# Database migrations
+migrations/
+server/migrations/

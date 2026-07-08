@@ -20,3 +20,6 @@ Thumbs.db
 # Postman
 *.postman_collection.json
 *.postman_environment.json
+
+# Database migrations
+migrations/
