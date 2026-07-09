@@ -8,5 +8,6 @@ export const users = pgTable('users',{
     location:varchar('location',{ length: 255 }).notNull().unique(),
     passwordHash: varchar('password_hash', { length: 255 }).notNull(),
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt:timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
 
